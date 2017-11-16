@@ -1,0 +1,40 @@
+* {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 14px;
+}
+
+aside, nav, header, footer{
+	background-color: lightblue;
+}
+
+[class$="r"] {
+	background-color: magenta;
+}
+
+header, footer{
+	text-align: center;
+}
+
+.header{
+	font-size: 46px;
+}
+
+.footer{
+	font-size: 10px;
+}
+
+.content{
+	font-size: 14px;
+}
+
+.navigation{
+	font-size: 12px;
+}
+
+.sidebar{
+	font-size: 10px;
+}
+
+[class*="a"]:not([class$="r"]){
+	background-color: blue;
+}
