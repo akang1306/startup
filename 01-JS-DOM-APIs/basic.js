@@ -1,6 +1,12 @@
+ var matrix = [
+   [1, 2, 3],
+   [4, 5, 6],
+   [7, 8, 9],
+   [0]
+ ];
+
 function fade() {
-        document.getElementById('fadein').style.opacity =  1;
-           
+        document.getElementById('fadein').style.opacity =  1;           
 }
 setTimeout(fade,500);
 
@@ -18,15 +24,8 @@ function onClick() {
   xhttp.send();
 }
 */
- var matrix = [
-   [1, 2, 3],
-   [4, 5, 6],
-   [7, 8, 9],
-   [0]
- ];
 
-setTimeout(createTable(matrix), 3000);
-
+setTimeout("createTable(matrix)",6000);
 
 
 var text = document.getElementById('texto');
@@ -34,11 +33,11 @@ var text = document.getElementById('texto');
 function read(){
 	return new Promise(function(resolve, reject){
 		var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(){
+      xhttp.onreadystatechange = function(){
       if (this.readyState == 4 && this.status == 200){
         var response = JSON.parse(this.responseText);
-        return resolve(response);
-      }   
+        resolve(response);
+      }  
     }
 		xhttp.open("GET", "https://api.github.com/search/repositories?q=" + text.value , true);
   	xhttp.send();
@@ -57,7 +56,7 @@ function write(content){
 function onClick(){
 	read()
 	.then(response => write(response))
-//  .catch(document.getElementById('fadein').style.backgroundColor =  "red")
+  .catch(reject => document.getElementById('fadein').style.backgroundColor =  "red")
 }
 
 function addList(content) {
@@ -67,11 +66,11 @@ function addList(content) {
   ul.appendChild(li);
 }
 
-function createTable(matrix){
-  for (var i = 0; i <= matrix.length - 1 ; i++) {
+function createTable(m){
+  for (var i = 0; i <= m.length - 1 ; i++) {
     createRow(i);
-    for (var j = 0 ; j <= matrix[i].length - 1 ; j++) {
-    createData(matrix[i][j],i);
+    for (var j = 0 ; j <= m[i].length - 1 ; j++) {
+    createData(m[i][j],i);
     }
   } 
 }
